@@ -1,23 +1,27 @@
 {
-  "name": "task-beam",
+  "name": "telegram-bot-typescript",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A simple Telegram bot built with TypeScript and Node.js",
+  "main": "dist/index.js",
   "scripts": {
-    "dev": "ts-node src/index.ts",
     "build": "tsc",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "watch": "tsc -w",
+    "dev:watch": "nodemon --exec ts-node src/index.ts"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@types/node": "^24.3.0",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.9.2"
-  },
+  "keywords": ["telegram", "bot", "typescript", "nodejs"],
+  "author": "Your Name",
+  "license": "MIT",
   "dependencies": {
-    "@types/express": "^5.0.3",
-    "express": "^5.1.0"
+    "node-telegram-bot-api": "^0.64.0",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.0",
+    "@types/node-telegram-bot-api": "^0.64.0",
+    "typescript": "^5.2.2",
+    "ts-node": "^10.9.1",
+    "nodemon": "^3.0.1"
   }
 }
