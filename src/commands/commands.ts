@@ -136,3 +136,36 @@ _Note: This is demo data. To get real weather, integrate with a weather API like
     await bot.sendMessage(chatId, demoWeather, { parse_mode: "Markdown" });
   },
 };
+
+export const pingCommand: BotCommand = {
+  command: '/ping',
+  description: 'Test bot responsiveness',
+  handler: async (bot: TelegramBot, msg: TelegramBot.Message) => {
+    const chatId = msg.chat.id;
+    const startTime = Date.now();
+    
+    const sentMessage = await bot.sendMessage(chatId, '🏓 Pinging...');
+    
+    const endTime = Date.now();
+    const responseTime = endTime - startTime;
+    
+    await bot.editMessageText(
+      `🏓 Pong!\n\n⚡ Response time: ${responseTime}ms\n✅ Bot is online and responsive!`,
+      {
+        chat_id: chatId,
+        message_id: sentMessage.message_id,
+      }
+    );
+  },
+};
+
+// Export all commands
+export const commands: BotCommand[] = [
+  startCommand,
+  helpCommand,
+  echoCommand,
+  timeCommand,
+  jokeCommand,
+  weatherCommand,
+  pingCommand,
+];
