@@ -50,4 +50,17 @@ export const helpCommand: BotCommand = {
     },
 };
 
+export const echoCommand: BotCommand = {
+    command: "/echo",
+    description: 'Echo back your message',
+    handler: async (bot: TelegramBot, msg: TelegramBot.Message, match: RegExpExecArray | null) => {
+        const chatId = msg.chat.id;
+        const text = match && match[1] ? match[1] : "";
 
+        if (!text.trim()) {
+            await bot.sendMessage(chatId, '! Please provide text to echo!\n\nExample: `/echo Hello World`', {parse_mode: 'Markdown' });
+            return;
+        }
+        await bot.sendMessage(chatId, `You said: ${text}`);
+    },
+}
