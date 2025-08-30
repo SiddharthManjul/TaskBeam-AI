@@ -28,7 +28,7 @@ Try any of these commands to get started!
 };
 
 export const helpCommand: BotCommand = {
-    command: "/help",
+    command: '/help',
     description: "Get list of available commands",
     handler: async (bot: TelegramBot, msg: TelegramBot.Message) => {
         const chatId = msg.chat.id;
@@ -51,7 +51,7 @@ export const helpCommand: BotCommand = {
 };
 
 export const echoCommand: BotCommand = {
-    command: "/echo",
+    command: '/echo',
     description: 'Echo back your message',
     handler: async (bot: TelegramBot, msg: TelegramBot.Message, match: RegExpExecArray | null) => {
         const chatId = msg.chat.id;
@@ -63,4 +63,23 @@ export const echoCommand: BotCommand = {
         }
         await bot.sendMessage(chatId, `You said: ${text}`);
     },
-}
+};
+
+export const timeCommand: BotCommand = {
+    command: '/time',
+    description: 'Get current date & time',
+    handler: async (bot: TelegramBot, msg: TelegramBot.Message) => {
+        const chatId = msg.chat.id;
+        const now = new Date();
+        const timeMessage = `
+        *Current Date & Time*
+        
+        Date: ${now.toLocaleDateString()}
+        Time: ${now.toLocaleTimeString()}
+        Timezone: ${Intl.DateTimeFormat().resolvedOptions().timeZone}
+        Unix Timestamp: ${Math.floor(now.getTime() / 1000)}
+        `;
+
+        await bot.sendMessage(chatId, timeMessage, { parse_mode: 'Markdown' });
+    }
+};
