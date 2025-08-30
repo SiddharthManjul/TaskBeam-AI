@@ -83,3 +83,25 @@ export const timeCommand: BotCommand = {
         await bot.sendMessage(chatId, timeMessage, { parse_mode: 'Markdown' });
     }
 };
+
+export const jokeCommand: BotCommand = {
+  command: '/joke',
+  description: 'Get a random programming joke',
+  handler: async (bot: TelegramBot, msg: TelegramBot.Message) => {
+    const chatId = msg.chat.id;
+    
+    const jokes = [
+      "Why do programmers prefer dark mode? Because light attracts bugs! 🐛",
+      "How many programmers does it take to change a light bulb? None, that's a hardware problem! 💡",
+      "Why don't programmers like nature? It has too many bugs! 🌿🐛",
+      "A SQL query goes into a bar, walks up to two tables and asks: 'Can I join you?' 🍺",
+      "Why do Java developers wear glasses? Because they don't C# 👓",
+      "There are only 10 types of people in the world: those who understand binary and those who don't! 🤖",
+      "Why did the programmer quit his job? He didn't get arrays! 📊",
+      "A programmer is told to 'go to hell', he finds the worst part of that statement is the 'go to' 😈"
+    ];
+
+    const randomJoke = jokes[Math.floor(Math.random() * jokes.length)];
+    await bot.sendMessage(chatId, `😄 ${randomJoke}`);
+  },
+};
